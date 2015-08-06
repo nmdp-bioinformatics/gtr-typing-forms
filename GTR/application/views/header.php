@@ -8,6 +8,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="<?php echo base_url('assets/js/bootstrap.min.js');?>"></script>
 <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
+<title>HGTR - Histoimmunogenetics Genotyping Test Registration</title>
 </head>
 
 
