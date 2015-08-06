@@ -4,15 +4,15 @@
 */cache/*
 */cache/!index.html
 */cache/!.htaccess
-GTR/application/cache/*
-!GTR/application/cache/index.html
-!GTR/application/cache/.htaccess
+HGTR/application/cache/*
+!HGTR/application/cache/index.html
+!HGTR/application/cache/.htaccess
 
-GTR/application/logs/*
-!GTR/application/logs/index.html
-!GTR/application/logs/.htaccess
+HGTR/application/logs/*
+!HGTR/application/logs/index.html
+!HGTR/application/logs/.htaccess
 
-GTR/user_guide_src/
+HGTR/user_guide_src/
 /vendor/
-GTR/readme.rst
-GTR/contributing.md
+HGTR/readme.rst
+HGTR/contributing.md
