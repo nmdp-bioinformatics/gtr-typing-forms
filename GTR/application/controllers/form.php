@@ -33,16 +33,19 @@ class Form extends CI_Controller {
 	{
 		$this->load->view('header');		
 		$this->load->view('kit_form');
+		$this->load->view('footer');
 	}
 	elseif ($selected_form == 'vendor')
 	{
 		$this->load->view('header');
 		$this->load->view('vendor_form');
+		$this->load->view('footer');
 	}
 	else
 	{
 		$this->load->view('header');
 		$this->load->view('form_placeholder');
+		$this->load->view('footer');
 	}
 	}
 

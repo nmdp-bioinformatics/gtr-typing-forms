@@ -66,7 +66,7 @@ class Kit_xml extends CI_Controller {
 	$traitsettype = 'undefined'; // can be Disease or undefined
 	$traittype = 'Not Applicable'; //can be Disease, phenocopy, subphenotype .. ADDING Not Applicable here
 	$elementvaluetype = 'Preferred'; //can be Preferred, Alternate, LabPreferredName, LabPreferredSymbol
-	$vendor_unique_code = 'TEST_KIT_ID'; //string, required for bulk upload, a unique code for vendor to identify the kit to help with data exchange. should do a post for it, add this field to form.
+	$vendor_unique_code = 'test_kit_id_here'; //string, required for bulk upload, a unique code for vendor to identify the kit to help with data exchange. should do a post for it, add this field to form.
 	// $purpose = $this->input->post('purpose'); //can be Diagnosis, Screening, Drug Response, Risk Assessment, Pre-symptomatic, Mutation Confirmation (family-specific or research results, etc), Pre-implantation genetic diagnosis
 	$purpose = 'Screening,Therapeutic management'; // need to update schema, i don't think these values are in there but they should be according to the field definitions pdf. Explode this to two elements.
 	$purpose_array = explode(',',$purpose);

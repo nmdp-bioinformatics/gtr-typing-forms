@@ -28,6 +28,7 @@ class Form_select extends CI_Controller {
 	{
 	$this->load->view('header');
 	$this->load->view('form_choice');
+	$this->load->view('footer');
 	}
 }
 ?>

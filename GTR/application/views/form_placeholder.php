@@ -15,7 +15,7 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
     
-<div style="margin-left:30%;margin-top:20px;margin-right:30%;">
+<div style="margin-left:30%;margin-top:90px;margin-right:30%;margin-bottom:50px;">
 <h3>Sorry, this form has not been developed yet.</h3>
 </br>
 <center>

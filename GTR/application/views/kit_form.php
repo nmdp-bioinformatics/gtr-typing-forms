@@ -32,10 +32,10 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
 
 
 
-<div class="container">
+<div class="container" style='margin-top:90px;'>
 
 </br>
-<legend>HLA Typing Kit Submission Form</legend>
+<legend>HLA Typing Kit Form</legend>
 </br>
 <p class='col-md-2'></p>
 <p class='col-md-8'><small>This form is for HLA Typing Kit xml submission generation for the Genetic Testing Registry. Do not use this for other types of kits, it has fixed variables specific to HLA typing.</small></p>
@@ -263,7 +263,7 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
 			<textarea id='assay_limitations' class='form-control' placeholder='Describe any limitations' name='assay_limitations'></textarea>
 		</div>
 	</div>
-	
+<!-- 	
 	<legend><span class='legend'>Regulations</span><button style='float:right;' type='button' class='btn btn-xs btn-info' data-toggle='popover'
 	 data-trigger='focus' title='Regulations' data-content='FDA/IRB regulations in this section'><small>section instructions</small></button></legend>
 	 <p>This is not required for the schema -- we may not care about this for our use and thus may not even include it</p>
@@ -274,7 +274,7 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
 		<div class='col-sm-9'>
 			<input type='text' id='fda_category' class='form-control' name='fda_category' />
 		</div>
-	</div>
+	</div> -->
 	
 	<legend><span class='legend'>Comments</span></legend>
 	<div class='form-group'>

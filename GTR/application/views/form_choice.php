@@ -14,8 +14,9 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
 
     You should have received a copy of the GNU Lesser General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>. -->
-    
-<div style="margin-left:30%;margin-top:20px;margin-right:30%;" >
+
+<div class='container'>
+<div style="margin-left:30%;margin-top:20%;margin-right:30%;" >
 <form role="form" method="POST" action="form">
 <div class="form-group">
   <label for="gtr_form_selection">Select a submission form:</label>
@@ -29,3 +30,5 @@ GTR Typing Forms is free software: you can redistribute it and/or modify
 </div>
 <button class="btn btn-default" type="submit">Continue</button>
 </form>
+</div>
+</div>
