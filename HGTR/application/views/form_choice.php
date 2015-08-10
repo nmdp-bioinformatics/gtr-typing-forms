@@ -25,7 +25,7 @@ HGTR Typing Forms is free software: you can redistribute it and/or modify
     <option value="vendor">Vendor</option>
     <option value="clinicaltest">Clinical Test</option>
     <option value="researchtest">Research Test</option>
-	<option value="kit">Kit</option>
+	<option value="kit" selected="selected">Kit</option>
   </select>
 </div>
 <button class="btn btn-default" type="submit">Continue</button>
