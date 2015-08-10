@@ -117,7 +117,7 @@ HGTR Typing Forms is free software: you can redistribute it and/or modify
                         </div>
 
                 </div><br><p>or</p><br>
-                <a href="#presentation" class="page-scroll btn btn-primary">Tell Me More</a>
+                <a href="#about" class="page-scroll btn btn-primary">Tell Me More</a>
             </div>
         </div>
     </header>
