@@ -41,7 +41,8 @@ HGTR Typing Forms is free software: you can redistribute it and/or modify
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="https://bethematch.org/"><img src="<?php echo base_url('assets/img/btm_logo.png');?>"></img></a>
+                <a class="navbar-brand page-scroll" href="https://bethematch.org/"><img src="<?php echo base_url('assets/img/btm_logo.png');?>"></img> </a>
+                <label style="color:red">*This site is a non-production proof of concept*</label>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

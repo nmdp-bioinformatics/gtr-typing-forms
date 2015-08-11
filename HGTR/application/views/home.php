@@ -93,7 +93,7 @@ HGTR Typing Forms is free software: you can redistribute it and/or modify
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in col-md-8 col-md-offset-2">HGTR: Histoimmunogenetics Genotyping Test Registration</div>
-                <div class="lead col-md-8 col-md-offset-2"><strong>*This site is a non-production proof of concept*</strong></div>
+                <div class=" red-border col-md-4 col-md-offset-4" >This site is a non-production proof of concept</div>
                 <div>
                     <div class='col-md-6 col-md-offset-3'>
                     <p class='lead'>Metadata on genotyping 
