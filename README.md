@@ -83,3 +83,17 @@ The way it does this is by simply calling a URL that responds with the JSON data
 As mentioned, the forms POST to a controller. So the form has an action attribute which specifies the URI to post to, which calls a controller and POSTs the data from the form to it. Within this controller, PHP functions are used
 to build an xml structured file. It will use variables where user input is needed, and the form POST will provide the data for this. For repeating sections, they are pushed into an array which is looped through in the controller to append those elements in the XML as often as needed. At the end of the document build, a PHP function is used to force a download of the XML file to the client's machine.
 
+##### Additional Libraries and Packages
+
+The [jQuery](https://jquery.com/) library is loaded for the dynamic functionality of many pages.
+
+[Bootstrap](http://getbootstrap.com/) is being used to make quick work of formatting and styling the site. The site uses the boostrap theme css, as well as the required boostrap css and js files. 
+
+Buttons, icons, and some images are from [Font Awesome](http://fortawesome.github.io/Font-Awesome/).
+
+The drop-down menus are being populated with data through Ajax calls that return data from the database. The drop-downs are then being constructed by [Selectize](http://brianreavis.github.io/selectize.js/).
+
+The form will not allow a file to be downloaded until certain rules are met. This is being enforced with [jQuery Validation Plugin](http://jqueryvalidation.org/).
+
+Repeating sections are using jQuery functions to append a templated HTML section that in some places will update the ID and Name with a count so functions can be reapplied or separate arrays can be POSTed with similar, but different,
+ names.
