@@ -2,7 +2,23 @@
 
 <a href="http://hgtr.b12x.org" target="_blank">Visit The HGTR Site</a>
 
-A php web application with forms for entering metadata on genotyping tests and kits for histoimmunogenetics. The forms then generate xml files similar to the standard from the Genetic Testing Registry (GTR).
+A php web application with forms for entering metadata on genotyping tests and kits for histoimmunogenetics. The forms then generate xml files similar to the standard from the [NCBI Genetic Testing Registry (GTR)](http://www.ncbi.nlm.nih.gov/gtr/).
+
+**Table of Contents**
+
+- [HGTR: Histoimmunogenetics Genotyping Test Registration](#hgtr-histoimmunogenetics-genotyping-test-registration)
+ 	- [Structure](#structure)
+		- [Filesystem](#filesystem)
+		- [Database](#database)
+	- [Development and Deployment](#development-and-deployment)
+		- [Local Development](#local-development)
+	- [Understanding the code](#understanding-the-code)
+		- [MVC](#mvc)
+		- [Walk-Through](#walk-through)
+			- [Home Page](#home-page)
+			- [Kit Form](#kit-form)
+			- [XML Download](#xml-download)
+		- [Additional Libraries and Packages](#additional-libraries-and-packages)
 
 ## Structure
 
@@ -41,6 +57,8 @@ When working with this code locally, I suggest running it on an Apache Server wi
 This site was written in PHP on the [CodeIgniter Web Framework](http://codeigniter.com).
 CodeIgniter is a PHP Framework that is loosely based on MVC (Models-Views-Controllers) or sometimes argued as PAC (Presentation-Abstraction-Control)
 
+#### MVC
+
 From CodeIgniter's site:
 
 "MVC separates application logic from presentation. It permits your web page to contain minimal scripting since the presentation is separate from the PHP scripting.
@@ -64,6 +82,8 @@ All of the files within the above directories are PHP, so any other languages, s
 Other libraries or filetypes used to help construct the views, such as javascript, css, or images, can be stored within the assets directory [here](HGTR/assets)
 
 #### Walk-Through
+
+Below is a walk-through of a typical use-case of the website and how the components of the framework interact.
 
 ##### Home Page
 
@@ -114,7 +134,7 @@ suggestion value is placed in the attribute, and for all such inputs the element
 Some values are fixed for this XML document build. This controller is where any edits or updates need to be made for such fixed values. It is also where new fields or changes to the schema need to be reflected. At the end of the document build, the XML document is saved to a string which is named and a PHP function forces a download of the XML file to the client's machine. No views are loaded, the page does not redirect, the button submit action will POST to this controller
 that builds the document and downloads it in place.
 
-##### Additional Libraries and Packages
+#### Additional Libraries and Packages
 
 The [jQuery](https://jquery.com/) library is loaded for the dynamic functionality of many pages.
 
