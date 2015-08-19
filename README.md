@@ -7,6 +7,10 @@ A php web application with forms for entering metadata on genotyping tests and k
 **Table of Contents**
 
 - [HGTR: Histoimmunogenetics Genotyping Test Registration](#hgtr-histoimmunogenetics-genotyping-test-registration)
+	- [Installation](#installation)
+		- [Windows](#windows)
+		- [Linux](#linux)
+		- [OS X](#os-x)
  	- [Structure](#structure)
 		- [Filesystem](#filesystem)
 		- [Database](#database)
@@ -19,6 +23,141 @@ A php web application with forms for entering metadata on genotyping tests and k
 			- [Kit Form](#kit-form)
 			- [XML Download](#xml-download)
 		- [Additional Libraries and Packages](#additional-libraries-and-packages)
+		- [External Sources](#external-sources)
+
+## Installation
+
+**General installation process**
+
+- Install an AMP stack (Apache-MySQL-PHP). Options can be found in [this list](https://en.wikipedia.org/wiki/List_of_Apache–MySQL–PHP_packages).
+- Copy the contents of [/HGTR](HGTR) into the 'www' or 'htdocs' (depends on your enviroment) directory
+- Run [/database/gtrsqldump.sql](database/gtrsqldump.sql) on the MySQL server
+- Check and update configuration settings
+- Start Server
+
+**Step-by-step Guide**
+
+#### Windows
+
+Tested and working on Windows 7 with
+
+WampServer 2.5:
+
+| PHP    | Apache | MySQL  |
+|--------|--------|--------|
+| 5.5.12 | 2.4.9  | 5.6.17 |
+
+
+1. Install [WampServer 2.5](http://www.wampserver.com/en/)
+	- The commands below assume installation to C:\ drive
+2. Clone this repository or download the zip of this repository and extract
+3. Copy the contents of [/HGTR](HGTR) into 'C:\wamp\www' in your WampServer installation directory
+4. Setup the database using either option below
+	- PHPMyAdmin
+		- Start the WampServer services
+		- In your browser navigate to 'localhost/phpmyadmin'
+		- Click 'New' on the left pane
+		- Create database. Name it 'gtr' and choose 'utf8_bin' for collation and create
+		- Select the 'gtr' database on the navigation pane on the left
+		- Select 'Import' on the top menubar (The page should say importing in database "gtr", make sure it says this and that you are not importing in the current server)
+		- Select 'choose file' and select ['...\database\gtrsqldump.sql'](database/gtrsqldump.sql) in your copy of this repository
+		- Make sure 'Format' is 'SQL' and SQL compatability mode is 'none'
+		- Click 'Go' at the bottom of the page
+	- MySQL command
+		- Click on the WampServer icon in the Notifications Area on the bottom right of the desktop
+		- Mouse over MySQL and then click on 'MySQL Console' and login (there should be no password, just hit enter)
+		- Create a new database `create database gtr`
+		- Import the database by running the SQL file. Provide the full path in the command below to ['...\database\gtrsqldump.sql'](database/gtrsqldump.sql) in your copy of this repository
+			- Run `source gtrsqldump.sql`
+5. Configure
+	- Setup development folder
+		- Graphical
+			- Open C:\wamp\www\application\config
+			- Make a new folder named 'development'
+			- Copy database.php and config.php from the config directory into the new development directory
+		- Command Line
+			- `cd C:\wamp\www\application\config`
+			- `md development`
+			- `xcopy config.php development`
+			- `xcopy database.php development`
+	- Configure files
+		- config\database.php
+			- update the following fields in this file:
+
+			> 'username' => 'root',
+
+			> 'database' => 'gtr',
+
+			Hostname should already be localhost and there is no password.			
+
+		- config.php
+			- update base_url. This step is not necessary if your site resides at 'localhost' but is
+			helpful if you have a different base.
+6. Start WampServer and open browser to 'localhost'
+
+#### Linux
+
+Tested and working on Linux Mint Cinnamon 17.2 Rafaela with 
+
+XAMPP 5.5.27 (XAMPP is cross compatible with Linux, OS X, and Windows):
+
+| PHP    | Apache    | MySQL  |
+|--------|-----------|--------|
+| 5.5.27 | 2.4.16    | 5.6.25 |
+
+
+- Install [XAMPP](https://www.apachefriends.org/index.html)
+- You may want to login to root with `su` for this session, or else you may have to re-enter commands with `sudo` if permission denied
+```
+# Clear htdocs, clone into it (<url> is the git url to the right on GitHub page)
+# and login to MySQL Server
+
+$ cd /opt/lampp
+$ rm -rfv htdocs && mkdir htdocs
+$ cd htdocs
+$ git clone <url> .
+$ /opt/lampp/lampp startmysql
+$ /opt/lampp/bin/mysql -u root
+
+# Build the database
+
+mysql> create database if not exists gtr;
+mysql> use gtr;
+mysql> source /opt/lampp/htdocs/database/gtrsqldump.sql;
+mysql> exit;
+
+# Configure the framework
+
+$ cd /opt/lampp/htdocs/HGTR/application/config
+$ mkdir development
+$ cp config.php development
+$ cp database.php development
+$ cd development
+$ nano database.php
+```
+In nano, edit the file, updating the following two values as shown below
+
+> 'username' => 'root',
+
+> 'database' => 'gtr',
+
+hostname should already be 'localhost' and there is no password.
+The following nano commands will save and exit: `^O`, `Enter`, `^X`
+```
+$ nano config.php
+```
+In nano, edit the file, updating the base url as below
+
+> $config['base_url'] = 'http://localhost/HGTR';
+
+The following nano commands will save and exit: `^O`, `Enter`, `^X`
+
+- Restart XAMPP
+- Open browser to 'localhost/HGTR'
+
+#### OS X
+
+[to be completed later]
 
 ## Structure
 
@@ -35,7 +174,7 @@ You can name your database whatever you want, but you must edit your database.ph
 
 ## Development and Deployment
 
-If you fork this repository, you should create a 'development' directory within the [config directory](HGTR/application/config). In here, copy [config.php](HGTR/application/config/config.php) and [database.php](HGTR/application/config/database.php) and in your local development, CodeIgniter will use the configuration settings found within this folder, while GitHub will ignore that directory when you commit (it is in the .gitignore already).
+More specific instructions on setting up a local development are [above](#installation). If you fork this repository, you should create a 'development' directory within the [config directory](HGTR/application/config). In here, copy [config.php](HGTR/application/config/config.php) and [database.php](HGTR/application/config/database.php) and in your local development, CodeIgniter will use the configuration settings found within this folder, while GitHub will ignore that directory when you commit (it is in the .gitignore already).
 
 In config.php, you will set such things as the base_url. CodeIgniter will try to auto-guess this or it will load 'localhost' if it cannot guess correctly or if you are working locally.
 
@@ -46,11 +185,6 @@ In the main 'config' directory, routes.php is where you can redefine your defaul
 Do not put any login credentials or private information into the files within the main 'config' directory, as a copy on GitHub would be public. 
 
 In the implementation of this website, the local development is configured from within the '/development' directory and the production deployment is handling the configuration on the server. This repository is directly linked to our Jenkin's server, which writes over the config files with its own, and deploys its build to Amazon. This server is also listening for commits to the base master branch. Any push to it will initiate a new build on Jenkins automatically. This means the website is automatically updated whenever the repository is updated.
-
-##### Local Development
-
-When working with this code locally, I suggest running it on an Apache Server with PHP 5.2 installed and a MySQL database. There are integrated packages that will install all of this, ready-to-use, available for free. Many
- of them are listed [here](https://en.wikipedia.org/wiki/List_of_Apache–MySQL–PHP_packages)
 
 ## Understanding the code
 
@@ -148,3 +282,10 @@ The form will not allow a file to be downloaded until certain rules are met. Thi
 
 Repeating sections are using jQuery functions to append a templated HTML section that in some places will update the ID and Name with a count so functions can be reapplied or separate arrays can be POSTed with similar, but different,
  names.
+
+#### External Sources
+
+All files without LGPL headers within [/HGTR](HGTR), excluding [/HGTR/assets](HGTR/assets) are part of the original CodeIgniter Web Framework 3.0 under the MIT License.
+
+
+
