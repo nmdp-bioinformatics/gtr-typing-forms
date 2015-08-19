@@ -317,22 +317,19 @@ class Vendor_xml extends CI_Controller {
 	
 	
 	
-	
+	// save xml to string
 	$xml_string = $xml->saveXML();
-	
-	$data['xml'] = $xml_string;
-	
+	// create filename
 	$vendor_underscore = str_replace(' ', '_', $vendor_name);
 	$name = $vendor_underscore.'_submission.xml';
 	
 	
-	
-	
-	
-	
-	//$this->load->view('header');
-	force_download($name,$xml_string);
-	$this->load->view('xml_output', $data);
+	// set headers and output/download
+	header('Content-Disposition: attachment; filename="'.$name.'"');
+	header('Content-Type: text/xml');
+	header('Content-Length: ' . strlen($xml_string));
+	header('Connection: close');
+	echo $xml_string;
 	}
 }
 ?>
