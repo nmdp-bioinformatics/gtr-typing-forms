@@ -120,7 +120,6 @@ class Kit_xml extends CI_Controller {
 	$protocol = $this->input->post('procedure');
 	$gene_array = $this->input->post('gene');
 	$exons = $this->input->post('exon');
-	print_r($exons);
 	// $analytical_validity = 'Analytical validity free text here.'; //(REMOVE THIS FOR KITS?)
 	$analytical_validity = $this->input->post('analytical_validity');
 	$assay_limitations = $this->input->post('assay_limitations');
@@ -719,27 +718,20 @@ class Kit_xml extends CI_Controller {
 	
 	
 	
-	
-	
-	
 	// Generate the XML File
-	$xml_string = $xml->saveXML();
-	
-	$data['xml'] = $xml_string;
-	
+	$xml_string = $xml->saveXML();	
+
+	// create filename
 	$kit_underscore = str_replace(' ', '_', $kit_name);
-	$name = $kit_underscore.'_submission.xml';
-	
-	
-	
-	
-	
-	
-	
-	//$this->load->view('header');
-	force_download($name,$xml_string);
-	$this->load->view('header');
-	$this->load->view('xml_output', $data);
+	$name = $kit_underscore.'_submission.xml';	
+
+	// set headers and output/download
+	header('Content-Disposition: attachment; filename="'.$name.'"');
+	header('Content-Type: text/xml');
+	header('Content-Length: ' . strlen($xml_string));
+	header('Connection: close');
+	echo $xml_string;
+
 	}
 }
 ?>
