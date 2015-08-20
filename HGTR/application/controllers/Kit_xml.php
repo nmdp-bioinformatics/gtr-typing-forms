@@ -45,7 +45,7 @@ class Kit_xml extends CI_Controller {
 	
 	
 	$val_type = 'name'; // can be either 'name' or 'id' but external submission should use name
-	$assertiontype = 'Allele Identification for Histocompatability'; // variation to disease, variation in modifier gene to disease, gene to disease
+	$assertiontype = 'allele identification for histocompatibility'; // variation to disease, variation in modifier gene to disease, gene to disease
 	// THIS NEEDS TO BE UPDATED in schema, added this assertiontype.. could be something else as well, but need a new one.
 	$methodtype = 'curation'; // curation, reference population, case-control, clinical testing, in vitro, in vivo -- may have to remove this as a required option.
 	$observedattributetype = 'VariantAlleles'; // incomplete list right now, not fully utilized - can choose Description, VariantAlleles, SubjectsWithVariant, 
@@ -62,7 +62,7 @@ class Kit_xml extends CI_Controller {
 	$measuretype = $this->input->post('test_measure'); //Gene, Variant, gene-variant, Analyte, Drug, chromosomal region, undefined
 	// $measuresettype = $this->input->post('test_measure'); // Variation, Gene, undetermined variant, insertion, deletion, single nucleotide variant, indel,
 	// Duplication, analyte, pharmacologic substance, protein, chromosomal region
-	$measuresettype = 'Variation'; // or maybe gene, undetermined variant.. trying to fix value, other options above.
+	$measuresettype = 'Variant'; // or maybe gene, undetermined variant.. trying to fix value, other options above.
 	$traitsettype = 'undefined'; // can be Disease or undefined
 	$traittype = 'Not Applicable'; //can be Disease, phenocopy, subphenotype .. ADDING Not Applicable here
 	$elementvaluetype = 'Preferred'; //can be Preferred, Alternate, LabPreferredName, LabPreferredSymbol
@@ -241,12 +241,11 @@ class Kit_xml extends CI_Controller {
 		//measuretrait/method	
 		$observationmethod_element = $xml->createElement('Method');
 		$observedin_element->appendChild($observationmethod_element);
-		$methodtype_element = $xml->createElement('MethodType',$methodtype);
-		$observationmethod_element->appendChild($methodtype_element);
-		$methodtype_attrib = $xml->createAttribute('val_type');
-		$methodtype_attrib->value = $val_type;
-		$methodtype_element->appendChild($methodtype_attrib);
-
+		
+		//reference standard
+		$imgt_hla_version_element = $xml->createElement('ReferenceStandard','IMGT/HLA Version: '.$imgt_hla_version);
+		// $methodtype_element ->appendChild($imgt_hla_version_element);
+		$observationmethod_element ->appendChild($imgt_hla_version_element);
 
 		// Software
 
@@ -278,17 +277,19 @@ class Kit_xml extends CI_Controller {
 						$software_purpose_attrib->value = $software_purpose;
 						$software_element->appendChild($software_purpose_attrib);
 					}
-					$methodtype_element->appendChild($software_element);
+					$observationmethod_element->appendChild($software_element);
 				}
 				$software_count++;
 			}			
 
 		}
 
-		//reference standard
-		$imgt_hla_version_element = $xml->createElement('ReferenceStandard','IMGT/HLA Version: '.$imgt_hla_version);
-		$methodtype_element ->appendChild($imgt_hla_version_element);
 
+		$methodtype_element = $xml->createElement('MethodType',$methodtype);
+		$observationmethod_element->appendChild($methodtype_element);
+		$methodtype_attrib = $xml->createAttribute('val_type');
+		$methodtype_attrib->value = $val_type;
+		$methodtype_element->appendChild($methodtype_attrib);
 		
 
 		
@@ -699,10 +700,12 @@ class Kit_xml extends CI_Controller {
 	//Quality Control --> Clinical Validity
 
 		//should clinical validity be required? QualityControl is in gtr schema, but clinical validity was not.
+	
+	$qualitycontrol_element = $xml->createElement('QualityControl');
+	$add_kit_element->appendChild($qualitycontrol_element);
+
 	if($clinical_validity)
-	{
-		$qualitycontrol_element = $xml->createElement('QualityControl');
-		$add_kit_element->appendChild($qualitycontrol_element);
+	{		
 		// internal validation could be added here optionally as well
 		$clinical_validity_element = $xml->createElement('ClinicalValidity');
 		$clinical_validity_description = $xml->createElement('Description',$clinical_validity);
